@@ -1,0 +1,70 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<h:body>
+     	<!-- Chama o template nessa page. Tudo fora dele é removido assim que a page é renderizada -->
+		<ui:composition template="/templates/templateBasico.xhtml">
+			<!-- Referência um <ui:define> de um template através do atributo name.
+				 Substituí o conteúdo de um container <ui:define> no template -->
+			 <ui:define name="conteudo">
+			 	<!-- INICIO -->
+			 	<p:tabView  style="height: 98%; overflow: auto;">
+				 	<p:tab title="Dados do cliente">
+				 		<h:panelGrid columns="4" cellpadding="10" class="formCadastro">
+				 			<p:outputLabel for="inputCpf" value="CPF "/>
+				 			<p:inputMask id="inputCpf" placeholder="cpf" value="#{ClienteBean.cliente.cpf}" mask="999.999.999-99"/>
+				 			<p:outputLabel for="inputNome" value="Nome"/>
+				 			<p:inputText id="inputNome" placeholder="Nome" value="#{ClienteBean.cliente.nome}"/>
+				 			<p:outputLabel for="inputIdade" value="Idade"/>
+				 			<p:inputText id="inputIdade" title="Idade" value="#{ClienteBean.cliente.idade}"/>
+				 			<p:outputLabel for="inputSexo" value="Sexo"/>
+				 			<p:inputText id="inputSexo" placeholder="Sexo" value="#{ClienteBean.cliente.sexo}"/>
+				 		</h:panelGrid>
+				 		<h:panelGrid cellpadding="10" class="formCadastro" style="width: 100%;">
+				 			<p:outputLabel for="inputInteresses" value="Interesses"/>
+				 			<p:inputTextarea id="inputInteresses" placeholder="Interesses..." value="#{ClienteBean.cliente.interesses}" style="width: 100%;"/>
+				 			<p:commandButton value="Salvar Cliente" actionListener="#{ClienteBean.salvar}" update="@form" style="margin-bottom: 10px;"/>
+			 			<p:outputLabel style="color: red;" value="*NOTA: Para atualizar um cliente informe o CPF do cliente cadastrado e os dados que deseja alterar."/>
+				 		</h:panelGrid>
+				 	</p:tab>
+				 	<p:tab title="Contatos">
+					 	<h:panelGrid columns="3" style="margin: 20px 0px;">
+			 				<p:selectOneMenu value="#{TipoContatoBean.tipoContato.tpContato}">
+			 					<f:selectItem itemLabel="Tipo de contato..." itemValue=""/>
+			 					<f:selectItems value="#{TipoContatoBean.listaTipoContato}"
+			 								   var="tipoContato"
+			 								   itemLabel="#{tipoContato.dsContato}"
+			 								   itemValue="#{tipoContato.tpContato}"/>
+			 				</p:selectOneMenu>
+					 		<p:inputText placeholder="Contato..." value="#{ListaContatoBean.listaContato.contato}"/>
+					 		<p:commandButton value="Salvar contato" actionListener="#{ListaContatoBean.salvar}" update="@form"/>
+					 		<p:outputLabel/>
+					 		<p:outputLabel/>
+					 		<p:commandButton value="Listar contatos" actionListener="#{ListaContatoBean.pesquisar}" update="@form"/>
+					 	</h:panelGrid>
+						<p:dataTable name="tabListaContato" value="#{ListaContatoBean.listaListaContato}" var="listaContato">
+					 		<f:facet name="header">
+					 			Lista de contatos
+					 		</f:facet>
+					 		<p:column>
+					 			<p:commandButton icon="ui-icon-circle-close" 
+					 							 action="#{ListaContatoBean.remover(listaContato)}" 
+					 							 update="@form"
+					 							 ajax="false"/>
+					 		</p:column>
+					 		<p:column headerText="Tipo">
+					 			<h:outputText value="#{listaContato.tipoContato.dsContato}"/>
+					 		</p:column>
+					 		<p:column headerText="Contato">
+					 			<h:outputText value="#{listaContato.contato}"/>
+					 		</p:column>
+					 	</p:dataTable>
+				 	</p:tab>
+			 	</p:tabView>
+			</ui:define>
+		</ui:composition>
+    </h:body>
+</html>

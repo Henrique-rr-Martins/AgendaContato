@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+
+     <h:head>
+   		<h:outputStylesheet name="style.css" library="css"/>
+     </h:head>
+     <h:body>
+		<p:layout fullPage="true">
+		    <p:layoutUnit position="west" resizable="true" collapsible="true" style="overflow: hidden;">
+					<ui:include src="/templates/templateMenu.xhtml"/>
+		    </p:layoutUnit>
+		    <p:layoutUnit position="center">
+				<ui:include src="/templates/templateConteudo.xhtml"/>
+		    </p:layoutUnit>		
+		    <p:layoutUnit position="south" resizable="true" collapsible="true" style="text-align: center;">
+				<ui:include src="/templates/templateRodape.xhtml"/>
+		    </p:layoutUnit>
+		
+		</p:layout>
+     </h:body>
+</html>

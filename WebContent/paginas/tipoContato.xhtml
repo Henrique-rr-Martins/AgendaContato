@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<h:head>
+		<h:outputStylesheet library="css" value="style.css"/>
+	</h:head>
+	<h:body>
+     	<!-- Chama o template nessa page. Tudo fora dele é removido assim que a page é renderizada -->
+		<ui:composition template="/templates/templateBasico.xhtml">
+			<!-- Referência um <ui:define> de um template através do atributo name.
+				 Substituí o conteúdo de um container <ui:define> no template -->
+			 <ui:define name="conteudo">
+			 	<h:panelGrid columns="3" style="margin: 20px 0px;">
+	 				<p:outputLabel value="Nome"/>
+	 				<p:inputText value="#{TipoContatoBean.tipoContato.dsContato}"/>
+	 				<p:commandButton value="Salvar" actionListener="#{TipoContatoBean.salvar}" ajax="false"/>
+			 	</h:panelGrid>
+			 	<p:dataTable id="tabTipoContato" name="tabTipoContato" value="#{TipoContatoBean.listaTipoContato}" var="tipoContato">
+			 		<f:facet name="header">
+			 			Lista de tipos de contatos
+			 		</f:facet>
+			 		<p:column colspan="1">
+			 			<p:commandButton icon="ui-icon-circle-close" 
+			 							 action="#{TipoContatoBean.remover(tipoContato)}" 
+			 							 update="tabTipoContato" reRender="tabTipoContato"/>
+			 		</p:column>
+			 		<p:column headerText="Tipo" colspan="2">
+			 			<h:outputText value="#{tipoContato.tpContato}"/>
+			 		</p:column>
+			 		<p:column headerText="Descrição" colspan="2">
+			 			<h:outputText value="#{tipoContato.dsContato}"/>
+			 		</p:column>
+			 	</p:dataTable>
+		 	</ui:define>
+		</ui:composition>
+    </h:body>
+</html>

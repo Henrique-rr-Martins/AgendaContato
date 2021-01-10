@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<h:body>
+		<!-- Chama o template nessa page. Tudo fora dele é removido assim que a page é renderizada -->
+		<ui:composition template="/templates/templateBasico.xhtml">
+			<!-- Referência um <ui:define> de um template através do atributo name.
+				 Substituí o conteúdo de um container <ui:define> no template -->
+			 <ui:define name="conteudo">
+			 	<h:panelGrid columns="2" style="margin: 20px 0px;">
+	 				<p:outputLabel for="inputCpf" value="Cpf"/>
+	 				<p:inputMask id="inputCpf" placeholder="cpf" value="#{ClienteBean.cliente.cpf}" mask="999.999.999-99"/>
+	 				<p:outputLabel for="inputNome" value="Nome"/>
+	 				<p:inputText id="inputNome" value="#{ClienteBean.cliente.nome}"/>
+	 				<p:commandButton value="Pesquisar" actionListener="#{ClienteBean.pesquisar}" update="@form"/>	 	
+			 	</h:panelGrid>
+			 	
+			 	<p:dataTable id="tabCliente" value="#{ClienteBean.listaCliente}" var="cliente">
+			 		<f:facet name="header">
+			 			Lista de clientes
+			 		</f:facet>
+			 		<p:column colspan="1">
+			 			<p:commandButton icon="ui-icon-circle-close" 
+			 							 action="#{ClienteBean.remover(cliente)}" 
+			 							 update="tabCliente"
+			 							 ajax="false"/>
+			 		</p:column>
+			 		<p:column headerText="CPF" colspan="2">
+			 			<h:outputText value="#{cliente.cpf}"/>
+			 		</p:column>
+			 		<p:column headerText="Nome" colspan="2">
+			 			<h:outputText value="#{cliente.nome}"/>
+			 		</p:column>
+			 		<p:column headerText="Idade" colspan="2">
+			 			<h:outputText value="#{cliente.idade}"/>
+			 		</p:column>
+			 		<p:column headerText="Sexo" colspan="2">
+			 			<h:outputText value="#{cliente.sexo}"/>
+			 		</p:column>
+			 		<p:column headerText="Interesses" colspan="3">
+			 			<h:outputText value="#{cliente.interesses}"/>
+			 		</p:column>
+				</p:dataTable>
+			</ui:define>
+		</ui:composition>
+    </h:body>
+</html>

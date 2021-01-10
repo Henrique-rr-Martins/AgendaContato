@@ -1,0 +1,17 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+      
+     <h:body>
+     	<!-- Chama o template nessa page. Tudo fora dele é removido assim que a page é renderizada -->
+		<ui:composition>
+			<h:form >
+				<!-- INSERT: Define que essa área da page pode ser substituída na page que está carregando este template -->
+				<ui:insert name="conteudo"></ui:insert>
+			</h:form>
+		</ui:composition>
+     </h:body>
+</html>

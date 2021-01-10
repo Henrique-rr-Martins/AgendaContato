@@ -1,0 +1,24 @@
+@charset "ISO-8859-1";
+
+#j_idt36\:pesquisaCliente{
+	width: 100%;
+}
+
+form{
+	overflow: auto;
+	height: 100%;
+}
+
+.formCadastro label{
+	width: 100%;
+}
+
+.ui-menu{
+	width: 100%;
+	height: 98%;
+	overflow: hidden;
+}
+
+.ui-widget-content{
+	overflow: hidden!important;
+}

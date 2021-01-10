@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:pe="http://primefaces.org/ui/extensions">
+      
+     <h:body>
+     	<!-- Chama o template nessa page. Tudo fora dele é removido assim que a page é renderizada -->
+		<ui:composition>
+   			<h:form>
+    			<p:menu>
+    				<p:submenu label="Links">
+    					<p:menuitem value="Clientes" icon="ui-icon-circle-zoomin" action="listaCliente.xhtml?faces-redirect=true" ajax="false"/>
+    					<p:menuitem value="Cadastro" icon="ui-icon-plusthick" action="cadastroCliente.xhtml?faces-redirect=true" ajax="false"/>
+    					<p:menuitem value="Tipos de Contato" icon="ui-icon-note" action="tipoContato.xhtml?faces-redirect=true" ajax="false"/>
+    				</p:submenu>
+    			</p:menu>
+   			</h:form>
+		</ui:composition>
+     </h:body>
+</html>
